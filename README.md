@@ -92,7 +92,3 @@
 **Keterangan:** Tampilan `SettingsScreen` yang dapat diakses melalui deep link `/settings`. Widget utama: `SettingsScreen`, `Scaffold`, `Text`.
 
 ---
-
-## Penutup
-
-Dengan memahami keempat jenis navigasi ini, Anda dapat membangun aplikasi Flutter yang skalabel dan mudah dinavigasi, baik untuk aplikasi sederhana maupun kompleks.
