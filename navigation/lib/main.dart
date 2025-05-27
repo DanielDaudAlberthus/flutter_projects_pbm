@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         '/detail': (context) => const DetailScreen(data: 'Hello from Home!'),
         '/settings': (context) => const SettingsScreen(username: 'Guest'),
+        '/about': (context) => const AboutScreen(), // Tambahkan ini
       },
     );
   }
@@ -33,10 +34,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Home Screen'), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,12 +45,17 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DetailScreen(data: 'Data from Home (Push)'),
+                    builder:
+                        (context) =>
+                            const DetailScreen(data: 'Data from Home (Push)'),
                   ),
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 textStyle: const TextStyle(fontSize: 16),
               ),
               child: const Text('Go to Detail (Push)'),
@@ -64,7 +67,10 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/detail');
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 textStyle: const TextStyle(fontSize: 16),
               ),
               child: const Text('Go to Detail (Named Route)'),
@@ -73,13 +79,35 @@ class HomeScreen extends StatelessWidget {
             // Tombol untuk named route ke SettingsScreen
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/settings', arguments: 'John Doe');
+                Navigator.pushNamed(
+                  context,
+                  '/settings',
+                  arguments: 'John Doe',
+                );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 textStyle: const TextStyle(fontSize: 16),
               ),
               child: const Text('Go to Settings'),
+            ),
+            const SizedBox(height: 20),
+            // Tombol untuk named route ke AboutScreen
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/about');
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+              child: const Text('Go to About'),
             ),
           ],
         ),
@@ -97,10 +125,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detail Screen'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Detail Screen'), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -116,7 +141,10 @@ class DetailScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 textStyle: const TextStyle(fontSize: 16),
               ),
               child: const Text('Go Back'),
@@ -137,13 +165,11 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Mendapatkan argumen tambahan jika dikirim melalui pushNamed
-    final args = ModalRoute.of(context)?.settings.arguments as String? ?? username;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as String? ?? username;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings Screen'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Settings Screen'), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -159,7 +185,48 @@ class SettingsScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+              child: const Text('Go Back'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Tambahkan AboutScreen di bawah SettingsScreen
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('About Screen'), centerTitle: true),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Aplikasi contoh navigasi Flutter.\nDibuat untuk praktikum PBM.',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 textStyle: const TextStyle(fontSize: 16),
               ),
               child: const Text('Go Back'),
